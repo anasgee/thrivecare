@@ -1,6 +1,7 @@
 "use client";
 import supabase from '@/utils/supabase/client';
 import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
@@ -27,7 +28,7 @@ const router = useRouter()
         throw new Error(result.error)
       }
        router.push("/")
-      router.refresh()
+      router.refresh();
     } catch (error) {
         console.log("Error in signing in while using supabase auth and next auth");
     }finally{
@@ -72,11 +73,11 @@ const router = useRouter()
         <img
           src="/logo.png"
           alt="Therapy session"
-          className="max-h-[90vh] rounded-lg object-cover"
+          className=" rounded-lg object-contain"
         />
       </div>
 
-      <div className=" w-1/2 mx-auto px-10 py-16 flex items-center justify-center flex-col">
+      <div className="  mx-auto px-10 py-16 flex items-center justify-center flex-col">
         <div className="mb-10">
           <img
             src="/thrive.png" 
@@ -87,39 +88,31 @@ const router = useRouter()
 
         <h2 className="text-2xl font-semibold mb-6">Client Login</h2>
 
-        <form onSubmit={handleNextAuth} className="flex flex-col">
-          <label className="mb-4 font-medium text-gray-700">
-            Email<span className="text-red-600">*</span>
-            <input
-              type="email"
+        <form onSubmit={handleNextAuth} className="flex w-full flex-col">
+           <div className='mb-4'>
+        <label className=" font-Poppins block text-sm font-bold mb-1 h-[26px] text-[16px]leading-[26px]">Email<span className='text-red-600'>*</span></label>
+        <input
+         type="email"
               placeholder="Enter Full Name"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="mt-2 w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
-            />
-          </label>
-
-          <label className="mb-4 font-medium text-gray-700 relative">
-            Password<span className="text-red-600">*</span>
-            <input
-              type={showPassword ? 'text' : 'password'}
+           className=' font-Poppins w-[525px] h-[48px]  text-black gap-[8px] p-3 border border-[#A9A9A9] rounded-md bg-[#EDEEF2] outline-none'
+        />
+      </div>
+           <div className='mb-4'>
+        <label className=" font-Poppins block text-sm font-bold mb-1 h-[26px] text-[16px]leading-[26px]">Password<span className='text-red-600'>*</span></label>
+        <input
+         type={showPassword ? 'text' : 'password'}
               placeholder="********"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="mt-2 w-full border border-gray-300 rounded-md px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-teal-500"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-10 text-gray-600 hover:text-gray-800"
-              aria-label={showPassword ? 'Hide password' : 'Show password'}
-            >
-              {showPassword ? 'hide' : 'show'}
-            </button>
-          </label>
+           className=' font-Poppins w-[525px] h-[48px]  text-black gap-[8px] p-3 border border-[#A9A9A9] rounded-md bg-[#EDEEF2] outline-none'
+        />
+      </div>
 
+          
           <button
             type="submit"
             className="bg-teal-600 text-white py-3 rounded-md hover:bg-teal-700 transition-colors duration-200"
@@ -138,9 +131,9 @@ const router = useRouter()
               <span>Remember password</span>
             </label>
 
-            <a href="#" className="text-teal-600 hover:underline">
+            <Link href="/forgot-password" className="text-teal-600 hover:underline">
               Forgot password?
-            </a>
+            </Link>
           </div>
 
           <div className="flex items-center my-6">
@@ -151,9 +144,9 @@ const router = useRouter()
 
           <p className="text-center text-gray-600">
             Don&apos;t Have an Account?{' '}
-            <a href="#" className="text-teal-600 font-semibold hover:underline">
+            <Link href="/auth/signup" className="text-teal-600 font-semibold hover:underline">
               Sign up
-            </a>
+            </Link>
           </p>
         </form>
       </div>
