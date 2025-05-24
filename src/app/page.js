@@ -3,6 +3,7 @@
 // import { authOptions } from "@/app/lib/authOptions";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import HomepageClientSide from "@/components/HomepageClientSide/HomepageClientSide";
 
 export default async function Home() {
   // const session = await getServerSession();
@@ -13,8 +14,7 @@ export default async function Home() {
 
   return (
     <div>
-     <Link href={"/auth/signin"}>Sign In </Link>
-     <Link href={"/auth/signup"}>Sign up </Link>
+     <HomepageClientSide/>
     </div>
   );
 }

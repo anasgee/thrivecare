@@ -17,11 +17,10 @@ export async function middleware(req) {
   // If the user is authenticated and trying to access restricted paths
   if (token && restrictedPaths.includes(req.nextUrl.pathname)) {
     console.log("Redirecting to homepage... User is authenticated.");
-    // Redirect to homepage or dashboard
+
     return NextResponse.redirect(new URL('/', req.url));
   }
 
-  // Allow the request to proceed if not authenticated or accessing other routes
   return NextResponse.next();
 }
 
